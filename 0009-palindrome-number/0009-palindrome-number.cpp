@@ -1,22 +1,17 @@
 class Solution {
 public:
     bool isPalindrome(int x) {
-        if(x < 0) // As per the example 2 : -121 will be 121- when reversed , so every negative no. is not palindrome
-        return false;
+        if (x < 0 || (x % 10 == 0 && x != 0)) // All negative as per example 2: -121 will be 121- so not a palindrome
+        return false;                        // Numbers ending 0: like 10, 100 etc are not palindrome as ex 3 but 0 is 
 
-        else {
-        int y = x;
-        long rev = 0; // Used long to avoid any overflow
 
-        while(y != 0){  // Simple extraction of digit and reversing
-            rev = (rev * 10) + (y % 10);
-            y /= 10;
+        long reversedNum = 0; // long to avoid any overflow.
+        int originalNum = x;
+        while (x > 0) //Simple Extraction of Digits and reversing number
+        {
+            reversedNum = (reversedNum * 10) + (x % 10);
+            x /= 10;
         }
-
-        if(rev == x)
-        return true;
-        else
-        return false;
-        }
+        return (originalNum == reversedNum);
     }
 };
